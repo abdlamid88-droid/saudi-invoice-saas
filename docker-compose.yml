@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: zatca_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: zatca_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: blind_invoice_web
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=zatca_db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    ports:
+      - "127.0.0.1:8502:8501"
+
+volumes:
+  postgres_data:

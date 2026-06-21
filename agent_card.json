@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "agentIdentity": {
+    "agentId": "zatca-invoice-specialist",
+    "name": "وكيل الفوترة الإلكترونية والامتثال الضريبي",
+    "developer": "Abdelhamid Bali",
+    "organization": "Programmer Farmer Lab",
+    "description": "وكيل محاسبي متخصص في فحص مبالغ الفواتير، حساب ضريبة القيمة المضافة (15%)، تشفير البيانات بهيكل TLV المعتمد، وأرشفتها رقمياً."
+  },
+  "capabilities": {
+    "domain": "المحاسبة والامتثال الضريبي (ZATCA)",
+    "tasks": [
+      "حساب ضريبة القيمة المضافة والإجماليات آلياً للقضاء على الهلوسة الحسابية.",
+      "صياغة ملفات الـ XML القياسية بناءً على معيار الفوترة UBL 2.1.",
+      "توليد سلاسل الـ Base64 المشفرة والمطابقة لمتطلبات هيكل الـ TLV القانوني."
+    ],
+    "toolsDeclared": [
+      {
+        "name": "save_zatca_invoice",
+        "interfaceProtocol": "MCP (Model Context Protocol)",
+        "transportType": "STDIO / JSON-RPC 2.0"
+      }
+    ]
+  },
+  "securityAndCompliance": {
+    "dataHandlingPolicy": "تخزين البيانات محلياً بشكل صارم داخل بيئة معزولة ونظيفة خالية من تسريب البيانات.",
+    "permissionScope": "صلاحية الوصول تقتصر على القراءة والكتابة داخل ملف قاعدة بيانات 'database.sqlite' المحدد للمشروع فقط.",
+    "readOnlyFallbackAvailable": true,
+    "humanInTheLoopRequired": true
+  },
+  "interactionSchema": {
+    "linguaFranca": "A2A Protocol (Agent-to-Agent Standard)",
+    "communicationRole": "Domain-bound Contractor / Specialist Sub-Agent",
+    "endpointConfig": {
+      "type": "Direct Point-to-Point via Hardcoded Endpoint",
+      "supportedTransports": ["STDIO", "SSE over HTTP"]
+    }
+  }
+}

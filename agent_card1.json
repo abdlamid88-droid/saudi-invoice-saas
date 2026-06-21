@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "agentIdentity": {
+    "agentId": "zatca-invoice-specialist",
+    "name": "E-Invoicing & Tax Compliance Agent",
+    "developer": "Abdelhamid Bali",
+    "organization": "Programmer Farmer Lab",
+    "description": "A specialized accounting agent designed to validate invoice amounts, calculate Value Added Tax (VAT) at 15%, encode data into the mandated ZATCA TLV structure, and securely archive records."
+  },
+  "capabilities": {
+    "domain": "Accounting & Tax Compliance (ZATCA)",
+    "tasks": [
+      "Automated VAT and total amount calculations to eliminate agentic mathematical hallucinations.",
+      "Dynamic generation of standard compliance XML files based on the UBL 2.1 invoicing framework.",
+      "Production of encrypted Base64 strings strictly compliant with legally mandated TLV structures."
+    ],
+    "toolsDeclared": [
+      {
+        "name": "save_zatca_invoice",
+        "interfaceProtocol": "MCP (Model Context Protocol)",
+        "transportType": "STDIO / JSON-RPC 2.0"
+      }
+    ]
+  },
+  "securityAndCompliance": {
+    "dataHandlingPolicy": "Strict local data storage within an isolated, clean environment to eliminate any data leakage risks.",
+    "permissionScope": "Access bounds are strictly restricted to read/write operations within the designated project 'database.sqlite' file.",
+    "readOnlyFallbackAvailable": true,
+    "humanInTheLoopRequired": true
+  },
+  "interactionSchema": {
+    "linguaFranca": "A2A Protocol (Agent-to-Agent Standard)",
+    "communicationRole": "Domain-bound Contractor / Specialist Sub-Agent",
+    "endpointConfig": {
+      "type": "Direct Point-to-Point via Hardcoded Endpoint",
+      "supportedTransports": ["STDIO", "SSE over HTTP"]
+    }
+  }
+}

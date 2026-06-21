@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+    <ext:UBLExtensions>
+        <ext:UBLExtension>
+            <ext:ExtensionURI>urn:oasis:names:specification:ubl:dsig:enveloped:xades</ext:ExtensionURI>
+            <ext:ExtensionContent>
+                <!-- Signature metadata will go here -->
+                <sig:UBLDocumentSignatures xmlns:sig="urn:oasis:names:specification:ubl:schema:xsd:CommonSignatureComponents-2">
+                    <sac:SignatureInformation xmlns:sac="urn:oasis:names:specification:ubl:schema:xsd:SignatureAggregateComponents-2">
+                        <cbc:ID>urn:oasis:names:specification:ubl:signature:1</cbc:ID>
+                        <sdoc:ReferencedSignatureID xmlns:sdoc="urn:oasis:names:specification:ubl:schema:xsd:SignatureBasicComponents-2">urn:oasis:names:specification:ubl:signature:Invoice</sdoc:ReferencedSignatureID>
+                    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="signature"><ds:SignatureValue>q9BiQkRySPayLQFW/NGJH/STIEXFncJF8cRJNeAuk731s8lNGnP4IfxHHH6ZSKN0ZP4iEZSEBMOPOzPmtMan7Q==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIICtTCCAlugAwIBAgIUWNRL80Vxmxmwy/YM/ptXfCqon6QwCgYIKoZIzj0EAwIwcjELMAkGA1UEBhMCU0ExIzAhBgNVBAoMGkR1bW15IERldmVsb3BlciBFbnRlcnByaXNlMRYwFAYDVQQLDA1SaXlhZGggQnJhbmNoMSYwJAYDVQQDDB1UU1QtODg2NDMxMTQ1LTM5OTk5OTk5OTkwMDAwMzAeFw0yNjA2MjAxNzM2MzZaFw0yNzA2MjExNzM2MzZaMHIxCzAJBgNVBAYTAlNBMSMwIQYDVQQKDBpEdW1teSBEZXZlbG9wZXIgRW50ZXJwcmlzZTEWMBQGA1UECwwNUml5YWRoIEJyYW5jaDEmMCQGA1UEAwwdVFNULTg4NjQzMTE0NS0zOTk5OTk5OTk5MDAwMDMwVjAQBgcqhkjOPQIBBgUrgQQACgNCAAQUkvhxEyYWLflrLuMjOS5oYGCYrCzd9T2Sog6dsREwqdw00DKHnsIbuzCLGBjCQHu05blB/owrycPfUELmVJtmo4HRMIHOMCQGCSsGAQQBgjcUAgQXExVUU1RaQVRDQS1Db2RlLVNpZ25pbmcwgaUGA1UdEQSBnTCBmqSBlzCBlDE7MDkGA1UEBAwyMS1UU1R8Mi1UU1R8My05NWU4ZjQ5OC01YzRkLTRlMmItOThmNi0xN2I1YzhmODVmY2ExHzAdBgoJkiaJk/IsZAEBDA8zOTk5OTk5OTk5MDAwMDMxDTALBgNVBAwMBDExMDAxDzANBgNVBBoMBlJpeWFkaDEUMBIGA1UEDwwLSVQgU2VydmljZXMwCgYIKoZIzj0EAwIDSAAwRQIhAP8Nl+z3GK1VGmJPUjYtj7uwHU26R8Yd/bycno/A/WrJAiBazKgjfH+9ChZWUhpz09dJuhlz0u9vzb0HXrpOZqh89w==</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></sac:SignatureInformation>
+                </sig:UBLDocumentSignatures>
+            </ext:ExtensionContent>
+        </ext:UBLExtension>
+    </ext:UBLExtensions>
+    <cbc:ProfileID>reporting:1.0</cbc:ProfileID>
+    <cbc:ID>INV-2026-0001</cbc:ID>
+    <cbc:UUID>95e8f498-5c4d-4e2b-98f6-17b5c8f85fca</cbc:UUID>
+    <cbc:IssueDate>2026-06-16</cbc:IssueDate>
+    <cbc:IssueTime>17:20:00</cbc:IssueTime>
+    <cbc:InvoiceTypeCode name="0211000">388</cbc:InvoiceTypeCode>
+    <cbc:DocumentCurrencyCode>SAR</cbc:DocumentCurrencyCode>
+    <cbc:TaxCurrencyCode>SAR</cbc:TaxCurrencyCode>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>ICV</cbc:ID>
+        <cbc:UUID>1</cbc:UUID>
+    </cac:AdditionalDocumentReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>PIH</cbc:ID>
+        <cbc:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain">NWZlY2ViNjZmZmM4NmYzOGQ5NTI3ODZjNmQ2OTZjNzljMmRiYzIzOWRkNGU5MWI0NjcyOWQ3M2EyN2ZiNTdlOQ==</cbc:EmbeddedDocumentBinaryObject>
+        </cbc:Attachment>
+    </cac:AdditionalDocumentReference>
+    <cac:AdditionalDocumentReference>
+        <cbc:ID>QR</cbc:ID>
+        <cbc:Attachment>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain">ARpEdW1teSBEZXZlbG9wZXIgRW50ZXJwcmlzZQIPMzk5OTk5OTk5OTAwMDAzAxQyMDI2LTA2LTE2VDE3OjIwOjAwWgQGMTE1LjAwBQUxNS4wMAYsNmJUZ1ZzanUzTWt6RkFEMk55VXFWNjlkejlZT3E1RnlKT0kxOVBqOGVFUT0HWHE5QmlRa1J5U1BheUxRRlcvTkdKSC9TVElFWEZuY0pGOGNSSk5lQXVrNzMxczhsTkduUDRJZnhISEg2WlNLTjBaUDRpRVpTRUJNT1BPelBtdE1hbjdRPT0IWDBWMBAGByqGSM49AgEGBSuBBAAKA0IABBSS+HETJhYt+Wsu4yM5LmhgYJisLN31PZKiDp2xETCp3DTQMoeewhu7MIsYGMJAe7TluUH+jCvJw99QQuZUm2YJGW1vY2stY2VydC1zaWduYXR1cmUtdmFsdWU=</cbc:EmbeddedDocumentBinaryObject>
+        </cbc:Attachment>
+    </cac:AdditionalDocumentReference>
+    <cac:Signature>
+        <cbc:ID>urn:oasis:names:specification:ubl:signature:Invoice</cbc:ID>
+        <cbc:SignatureMethod>urn:oasis:names:specification:ubl:dsig:enveloped:xades</cbc:SignatureMethod>
+    </cac:Signature>
+    <cac:AccountingSupplierParty>
+        <cac:Party>
+            <cac:PartyIdentification>
+                <cbc:ID schemeID="CRN">1010000000</cbc:ID>
+            </cac:PartyIdentification>
+            <cac:PartyName>
+                <cbc:Name>Dummy Developer Enterprise</cbc:Name>
+            </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:StreetName>King Fahd Road</cbc:StreetName>
+                <cbc:BuildingNumber>1234</cbc:BuildingNumber>
+                <cbc:CitySubdivisionName>Al Olaya</cbc:CitySubdivisionName>
+                <cbc:CityName>Riyadh</cbc:CityName>
+                <cbc:PostalZone>12211</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>SA</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID>399999999900003</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+        </cac:Party>
+    </cac:AccountingSupplierParty>
+    <cac:AccountingCustomerParty>
+        <cac:Party>
+            <cac:PartyTaxScheme>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+        </cac:Party>
+    </cac:AccountingCustomerParty>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="SAR">15.00</cbc:TaxAmount>
+        <cac:TaxSubtotal>
+            <cbc:TaxableAmount currencyID="SAR">100.00</cbc:TaxableAmount>
+            <cbc:TaxAmount currencyID="SAR">15.00</cbc:TaxAmount>
+            <cac:TaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:TaxCategory>
+        </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:LegalMonetaryTotal>
+        <cbc:LineExtensionAmount currencyID="SAR">100.00</cbc:LineExtensionAmount>
+        <cbc:TaxExclusiveAmount currencyID="SAR">100.00</cbc:TaxExclusiveAmount>
+        <cbc:TaxInclusiveAmount currencyID="SAR">115.00</cbc:TaxInclusiveAmount>
+        <cbc:AllowanceTotalAmount currencyID="SAR">0.00</cbc:AllowanceTotalAmount>
+        <cbc:PayableAmount currencyID="SAR">115.00</cbc:PayableAmount>
+    </cac:LegalMonetaryTotal>
+    <cac:InvoiceLine>
+        <cbc:ID>1</cbc:ID>
+        <cbc:InvoicedQuantity unitCode="PCE">1.000000</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="SAR">100.00</cbc:LineExtensionAmount>
+        <cac:Item>
+            <cbc:Name>Dummy Sandbox Product</cbc:Name>
+            <cac:ClassifiedTaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>15.00</cbc:Percent>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:ClassifiedTaxCategory>
+        </cac:Item>
+        <cac:Price>
+            <cbc:PriceAmount currencyID="SAR">100.00</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+</Invoice>
