@@ -458,19 +458,43 @@ else:
                     "buyer_vat": buyer_vat,
                     "amount": amount
                 }
-                
-                try:
+               try:
                     response = requests.post(api_url, json=payload)
                     if response.status_code == 200:
-                        st.success("✅ تم الاتصال بالمحرك التشفيري بنجاح (الرد: 200 OK)!")
-                        try:
-                            data = response.json()
-                            st.write("البيانات المستلمة (JSON):")
+                        data = response.json()
+                        
+                        if data.get("status") == "success":
+                            st.success(f"✅ تمت أتمتة الفاتورة وتشفيرها بنجاح! رقم العملية: {data.get('invoice_id')}")
+                            
+                            # عرض التفاصيل التشفيرية بطريقة أنيقة
+                            st.info(f"""
+                            🔐 **التفاصيل التشفيرية (ZATCA Phase II):**
+                            * **حالة الفاتورة:** `{data.get('zatca_status')}`
+                            * **تجزئة الفاتورة السابقة (PIH):** `{data.get('pih_used')}`
+                            * **تجزئة الفاتورة الحالية (Hash):** `{data.get('new_invoice_hash')}`
+                            """)
+                            
+                            # جلب ملف الـ XML من المحرك الداخلي لتوفيره للتحميل
+                            xml_url = data.get("xml_download_url")
+                            if xml_url:
+                                full_xml_url = f"http://host.docker.internal:8000{xml_url}"
+                                try:
+                                    xml_response = requests.get(full_xml_url)
+                                    if xml_response.status_code == 200:
+                                        st.download_button(
+                                            label="📄 تحميل ملف الفاتورة (XML المعتمد)",
+                                            data=xml_response.content,
+                                            file_name=f"{data.get('invoice_id')}.xml",
+                                            mime="application/xml",
+                                        )
+                                    else:
+                                        st.warning("⚠️ تم التشفير بنجاح، ولكن تعذر جلب ملف الـ XML للتحميل.")
+                                except Exception as e:
+                                    st.error(f"❌ خطأ أثناء محاولة جلب الـ XML: {e}")
+                        else:
+                            st.warning("⚠️ استجاب المحرك ولكن بحالة غير متوقعة:")
                             st.json(data)
-                        except Exception as e:
-                            st.warning("⚠️ المحرك يرجع البيانات بصيغة نصية أو XML وليس JSON. هذا هو الرد الخام:")
-                            st.code(response.text)
                     else:
                         st.error(f"❌ خطأ من الخادم (الكود {response.status_code}): {response.text}")
                 except Exception as e:
-                    st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}")
+                    st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}") 
