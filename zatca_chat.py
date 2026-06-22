@@ -447,7 +447,7 @@ else:
 
         if submit_btn:
             with st.spinner("جاري الاتصال بالمحرك التشفيري..."):
-                api_url = "http://host.docker.internal:8000/api/generate_invoice"
+                api_url = "http://host.docker.internal:8000/api/v1/invoices/issue"
                 try:
                     response = requests.post(api_url, json={"customer_name": company_name, "amount": amount})
                     if response.status_code == 200:
