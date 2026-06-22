@@ -18,6 +18,8 @@ services:
     build: .
     container_name: blind_invoice_web
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - db
     environment:
