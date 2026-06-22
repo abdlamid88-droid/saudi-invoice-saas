@@ -451,14 +451,16 @@ else:
                 try:
                     response = requests.post(api_url, json={"customer_name": company_name, "amount": amount})
                     if response.status_code == 200:
-                        st.success("✅ تم تشفير الفاتورة وتوقيعها بنجاح!")
-                        data = response.json()
-                        if "xml_invoice" in data:
-                            st.download_button(label="📥 تحميل الفاتورة (XML)", data=data["xml_invoice"], file_name=f"invoice_{company_name}.xml", mime="application/xml")
-                        if "qr_base64" in data:
-                            st.image(f"data:image/png;base64,{data['qr_base64']}")
+                        st.success("✅ تم الاتصال بالمحرك التشفيري بنجاح (الرد: 200 OK)!")
+                        try:
+                            data = response.json()
+                            st.write("البيانات المستلمة (JSON):")
+                            st.json(data)
+                        except Exception as e:
+                            st.warning("⚠️ المحرك يرجع البيانات بصيغة نصية أو XML وليس JSON. هذا هو الرد الخام:")
+                            st.code(response.text)
                     else:
-                        st.error(f"❌ فشل إصدار الفاتورة من المحرك التشفيري: {response.status_code}")
+                        st.error(f"❌ خطأ من الخادم (الكود {response.status_code}): {response.text}")
                 except Exception as e:
                     st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}")
 
