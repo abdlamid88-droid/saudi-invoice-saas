@@ -433,11 +433,11 @@ else:
             except Exception as e:
                 st.error(f"حدث خطأ أثناء معالجة الطلب: {e}")
 
-    # Direct Invoice Generation Form (Alternative to Chatbot)
+# Direct Invoice Generation Form (Alternative to Chatbot)
     st.markdown("---")
     st.subheader("📝 نموذج إصدار الفاتورة المباشر")
+    
     with st.form("direct_invoice_form"):
-        # تقسيم الواجهة إلى 3 أعمدة لإضافة الرقم الضريبي
         col1, col2, col3 = st.columns(3)
         with col1:
             buyer_company = st.text_input("اسم العميل / الشركة", value="شركة المعالي")
@@ -466,7 +466,6 @@ else:
                         if data.get("status") == "success":
                             st.success(f"✅ تمت أتمتة الفاتورة وتشفيرها بنجاح! رقم العملية: {data.get('invoice_id')}")
                             
-                            # عرض التفاصيل التشفيرية بطريقة أنيقة
                             st.info(f"""
                             🔐 **التفاصيل التشفيرية (ZATCA Phase II):**
                             * **حالة الفاتورة:** `{data.get('zatca_status')}`
@@ -474,19 +473,15 @@ else:
                             * **تجزئة الفاتورة الحالية (Hash):** `{data.get('new_invoice_hash')}`
                             """)
                             
-                            # جلب ملف الـ XML من المحرك الداخلي لتوفيره للتحميل
+                            # جلب ملف الـ XML وحفظه في ذاكرة الجلسة (Session State) لعرض الزر بالخارج
                             xml_url = data.get("xml_download_url")
                             if xml_url:
                                 full_xml_url = f"http://host.docker.internal:8000{xml_url}"
                                 try:
                                     xml_response = requests.get(full_xml_url)
                                     if xml_response.status_code == 200:
-                                        st.download_button(
-                                            label="📄 تحميل ملف الفاتورة (XML المعتمد)",
-                                            data=xml_response.content,
-                                            file_name=f"{data.get('invoice_id')}.xml",
-                                            mime="application/xml",
-                                        )
+                                        st.session_state['download_xml_data'] = xml_response.content
+                                        st.session_state['download_xml_name'] = f"{data.get('invoice_id')}.xml"
                                     else:
                                         st.warning("⚠️ تم التشفير بنجاح، ولكن تعذر جلب ملف الـ XML للتحميل.")
                                 except Exception as e:
@@ -498,3 +493,14 @@ else:
                         st.error(f"❌ خطأ من الخادم (الكود {response.status_code}): {response.text}")
                 except Exception as e:
                     st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}")
+
+    # عرض زر التحميل خارج النموذج (إذا كان الملف متوفراً في الذاكرة)
+    if 'download_xml_data' in st.session_state:
+        st.markdown("---")
+        st.download_button(
+            label="📄 تحميل ملف الفاتورة (XML المعتمد للهيئة)",
+            data=st.session_state['download_xml_data'],
+            file_name=st.session_state['download_xml_name'],
+            mime="application/xml",
+            type="primary"
+        )
