@@ -11,6 +11,8 @@ import streamlit as st
 import google.generativeai as genai
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+import requests
+
 
 # Page configuration
 st.set_page_config(
@@ -430,3 +432,33 @@ else:
                     
             except Exception as e:
                 st.error(f"حدث خطأ أثناء معالجة الطلب: {e}")
+
+    # Direct Invoice Generation Form (Alternative to Chatbot)
+    st.markdown("---")
+    st.subheader("📝 نموذج إصدار الفاتورة المباشر")
+    with st.form("direct_invoice_form"):
+        col1, col2 = st.columns(2)
+        with col1:
+            company_name = st.text_input("اسم العميل / الشركة", value="شركة المعالي")
+        with col2:
+            amount = st.number_input("مبلغ الفاتورة (ريال)", min_value=1.0, value=400.0, step=10.0)
+            
+        submit_btn = st.form_submit_button("إصدار وتشفير الفاتورة 🚀")
+
+        if submit_btn:
+            with st.spinner("جاري الاتصال بالمحرك التشفيري..."):
+                api_url = "http://127.0.0.1:8000/api/generate_invoice" 
+                try:
+                    response = requests.post(api_url, json={"customer_name": company_name, "amount": amount})
+                    if response.status_code == 200:
+                        st.success("✅ تم تشفير الفاتورة وتوقيعها بنجاح!")
+                        data = response.json()
+                        if "xml_invoice" in data:
+                            st.download_button(label="📥 تحميل الفاتورة (XML)", data=data["xml_invoice"], file_name=f"invoice_{company_name}.xml", mime="application/xml")
+                        if "qr_base64" in data:
+                            st.image(f"data:image/png;base64,{data['qr_base64']}")
+                    else:
+                        st.error(f"❌ فشل إصدار الفاتورة من المحرك التشفيري: {response.status_code}")
+                except Exception as e:
+                    st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}")
+
