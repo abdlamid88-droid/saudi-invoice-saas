@@ -452,13 +452,13 @@ else:
             with st.spinner("جاري الاتصال بالمحرك التشفيري..."):
                 api_url = "http://host.docker.internal:8000/api/v1/invoices/issue"
                 
-                # صياغة البيانات بالأسماء التي يطلبها المحرك التشفيري تماماً
                 payload = {
                     "buyer_company": buyer_company,
                     "buyer_vat": buyer_vat,
                     "amount": amount
                 }
-               try:
+                
+                try:
                     response = requests.post(api_url, json=payload)
                     if response.status_code == 200:
                         data = response.json()
@@ -497,4 +497,4 @@ else:
                     else:
                         st.error(f"❌ خطأ من الخادم (الكود {response.status_code}): {response.text}")
                 except Exception as e:
-                    st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}") 
+                    st.error(f"❌ حدث خطأ أثناء الاتصال بالمحرك التشفيري: {e}")
