@@ -30,7 +30,23 @@ services:
       - DB_PASSWORD=postgres
       - GEMINI_API_KEY=${GEMINI_API_KEY}
     ports:
-      - "127.0.0.1:8502:8501"
+      - "0.0.0.0:8505:8501"
+
+  caddy:
+    image: caddy:alpine
+    container_name: blind_invoice_caddy
+    restart: always
+    ports:
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
 
 volumes:
   postgres_data:
+  caddy_data:
+  caddy_config:
