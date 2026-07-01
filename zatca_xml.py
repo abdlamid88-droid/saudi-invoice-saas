@@ -86,8 +86,7 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     ET.SubElement(ref_qr, 'cbc:ID').text = 'QR'
     att_qr = ET.SubElement(ref_qr, 'cac:Attachment')
     obj_qr = ET.SubElement(att_qr, 'cbc:EmbeddedDocumentBinaryObject', {
-        'mimeCode': 'text/plain',
-        'id': 'qr_code_placeholder'
+        'mimeCode': 'text/plain'
     })
     obj_qr.text = 'WILL_BE_REPLACED_WITH_BASE64_QR_CODE'
 
