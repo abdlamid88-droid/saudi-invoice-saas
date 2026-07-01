@@ -211,7 +211,7 @@ def generate_final_signed_invoice(invoice_data: dict) -> str:
                     </xades:SigPolicyId>
                     <xades:SigPolicyHash>
                         <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-                        <ds:DigestValue>9l5BwUao7hsGNDu9O649li5zpd8suGBc4Lj51v/7+U=</ds:DigestValue>
+                        <ds:DigestValue>rnCfcXlAk/cLYtR9ypOhtiz/TW7sTEj4meUcUlz7SoM=</ds:DigestValue>
                     </xades:SigPolicyHash>
                 </xades:SignaturePolicyId>
             </xades:SignaturePolicyIdentifier>

@@ -16,24 +16,24 @@
                 <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
             </ds:Transforms>
             <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-            <ds:DigestValue>vToIWnebzcjIrW1FPShlO2Q7blZhopbNgl/Oz7DGQb4=</ds:DigestValue>
+            <ds:DigestValue>gZgG6oCLDtMtH79Gbv1ijc8gxnZMKtHo6NB9cec5A4Y=</ds:DigestValue>
         </ds:Reference>
         <ds:Reference Type="http://uri.etsi.org/01903#SignedProperties" URI="#xadesSignedProperties">
             <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-            <ds:DigestValue>EBqFwFZJTjLtotY0XyMA3Kcki0uBJ//rxdqUj1e/E3Y=</ds:DigestValue>
+            <ds:DigestValue>itat0EabJINvaXK63ddqpAixjgJRiHkQdadyC0jqFlI=</ds:DigestValue>
         </ds:Reference>
-    </ds:SignedInfo><ds:SignatureValue>a5ImxjSH1JSHA2j+/VzDFT2PPqCvMyteX0HYT8OoXrt2/sPsL7YMVzKloZGnmG1MND9XN/r7SJ5ShonksaWhcA==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIICtjCCAlugAwIBAgIUZ6VfNVerBeYZyNz4sTSogPP+mpQwCgYIKoZIzj0EAwIwcjELMAkGA1UEBhMCU0ExIzAhBgNVBAoMGkR1bW15IERldmVsb3BlciBFbnRlcnByaXNlMRYwFAYDVQQLDA1SaXlhZGggQnJhbmNoMSYwJAYDVQQDDB1UU1QtODg2NDMxMTQ1LTM5OTk5OTk5OTkwMDAwMzAeFw0yNjA2MjAxNzM1NThaFw0yNzA2MjExNzM1NThaMHIxCzAJBgNVBAYTAlNBMSMwIQYDVQQKDBpEdW1teSBEZXZlbG9wZXIgRW50ZXJwcmlzZTEWMBQGA1UECwwNUml5YWRoIEJyYW5jaDEmMCQGA1UEAwwdVFNULTg4NjQzMTE0NS0zOTk5OTk5OTk5MDAwMDMwVjAQBgcqhkjOPQIBBgUrgQQACgNCAAROoZOhRKkGFQemFXx8JZTSgaYZRmyVTiHnPgC57FElBJlEn8psugNmzs6a324f4TGrfF1ob80VkavFlx1fQguoo4HRMIHOMCQGCSsGAQQBgjcUAgQXExVUU1RaQVRDQS1Db2RlLVNpZ25pbmcwgaUGA1UdEQSBnTCBmqSBlzCBlDE7MDkGA1UEBAwyMS1UU1R8Mi1UU1R8My05NWU4ZjQ5OC01YzRkLTRlMmItOThmNi0xN2I1YzhmODVmY2ExHzAdBgoJkiaJk/IsZAEBDA8zOTk5OTk5OTk5MDAwMDMxDTALBgNVBAwMBDExMDAxDzANBgNVBBoMBlJpeWFkaDEUMBIGA1UEDwwLSVQgU2VydmljZXMwCgYIKoZIzj0EAwIDSQAwRgIhAOULhHF4gafxdhNXtEXw4pVoPb/yV5cwIgaxhumzUMH2AiEA7K07FCx0QfdelyXVPq3+DLB38eNmSxBeDA9pqjlYWjY=</ds:X509Certificate></ds:X509Data></ds:KeyInfo><ds:Object><xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" Target="#signature"><xades:SignedProperties Id="xadesSignedProperties">
+    </ds:SignedInfo><ds:SignatureValue>NBcKsovaBs4gz2uvemWuJrhzcvwaA7Qbi5bedIp/yJMqkYRdBtVIWj+K2bjuqmBr2ElBT19ZY/xkrz1JObjYcg==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIICtTCCAlugAwIBAgIUYa1l3VeBiPgGdGKpNtPZ8lUN7H8wCgYIKoZIzj0EAwIwcjELMAkGA1UEBhMCU0ExIzAhBgNVBAoMGkR1bW15IERldmVsb3BlciBFbnRlcnByaXNlMRYwFAYDVQQLDA1SaXlhZGggQnJhbmNoMSYwJAYDVQQDDB1UU1QtODg2NDMxMTQ1LTM5OTk5OTk5OTkwMDAwMzAeFw0yNjA2MzAxMjMxMTNaFw0yNzA3MDExMjMxMTNaMHIxCzAJBgNVBAYTAlNBMSMwIQYDVQQKDBpEdW1teSBEZXZlbG9wZXIgRW50ZXJwcmlzZTEWMBQGA1UECwwNUml5YWRoIEJyYW5jaDEmMCQGA1UEAwwdVFNULTg4NjQzMTE0NS0zOTk5OTk5OTk5MDAwMDMwVjAQBgcqhkjOPQIBBgUrgQQACgNCAARa8Ix5va7jHE91ciCKM+HoqC4ULc5NplsrjibiveeyhtiXvzxniUcpVZEUPD/EQlkRPwU6ng5e4r+E0XIN8GI/o4HRMIHOMCQGCSsGAQQBgjcUAgQXExVUU1RaQVRDQS1Db2RlLVNpZ25pbmcwgaUGA1UdEQSBnTCBmqSBlzCBlDE7MDkGA1UEBAwyMS1UU1R8Mi1UU1R8My05NWU4ZjQ5OC01YzRkLTRlMmItOThmNi0xN2I1YzhmODVmY2ExHzAdBgoJkiaJk/IsZAEBDA8zOTk5OTk5OTk5MDAwMDMxDTALBgNVBAwMBDExMDAxDzANBgNVBBoMBlJpeWFkaDEUMBIGA1UEDwwLSVQgU2VydmljZXMwCgYIKoZIzj0EAwIDSAAwRQIhAOhoC3vEYovBsiOLPmVNvHxqoN+2P8qMjPWcFf54XnLFAiB0ByNMUapm5a1p/RGukmwVK5HWGD2yZS0ZlaayPTeRbg==</ds:X509Certificate></ds:X509Data></ds:KeyInfo><ds:Object><xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" Target="#signature"><xades:SignedProperties Id="xadesSignedProperties">
         <xades:SignedSignatureProperties>
             <xades:SigningTime>2026-06-18T22:42:00Z</xades:SigningTime>
             <xades:SigningCertificate>
                 <xades:Cert>
                     <xades:CertDigest>
                         <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-                        <ds:DigestValue>z47qwMND0yTGm0qs9DM/TyByiwrHzkxFctO5YNVOFsk=</ds:DigestValue>
+                        <ds:DigestValue>fRuO2btQMHjnNdk30nhwm8AnijEHivrQHlCyw5dTs6g=</ds:DigestValue>
                     </xades:CertDigest>
                     <xades:IssuerSerial>
                         <ds:X509IssuerName>CN=TST-886431145-399999999900003, OU=Riyadh Branch, O=Dummy Developer Enterprise, C=SA</ds:X509IssuerName>
-                        <ds:X509SerialNumber>591713966171272825886139692681389935963129420436</ds:X509SerialNumber>
+                        <ds:X509SerialNumber>557639007348855848952739055066024483984350506111</ds:X509SerialNumber>
                     </xades:IssuerSerial>
                 </xades:Cert>
             </xades:SigningCertificate>
@@ -44,7 +44,7 @@
                     </xades:SigPolicyId>
                     <xades:SigPolicyHash>
                         <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-                        <ds:DigestValue>9l5BwUao7hsGNDu9O649li5zpd8suGBc4Lj51v/7+U=</ds:DigestValue>
+                        <ds:DigestValue>rnCfcXlAk/cLYtR9ypOhtiz/TW7sTEj4meUcUlz7SoM=</ds:DigestValue>
                     </xades:SigPolicyHash>
                 </xades:SignaturePolicyId>
             </xades:SignaturePolicyIdentifier>
@@ -59,7 +59,7 @@
     <cbc:UUID>95e8f498-5c4d-4e2b-98f6-17b5c8f85fca</cbc:UUID>
     <cbc:IssueDate>2026-06-18</cbc:IssueDate>
     <cbc:IssueTime>22:42:00</cbc:IssueTime>
-    <cbc:InvoiceTypeCode name="0211000">388</cbc:InvoiceTypeCode>
+    <cbc:InvoiceTypeCode name="0100000">388</cbc:InvoiceTypeCode>
     <cbc:DocumentCurrencyCode>SAR</cbc:DocumentCurrencyCode>
     <cbc:TaxCurrencyCode>SAR</cbc:TaxCurrencyCode>
     <cac:AdditionalDocumentReference>
@@ -75,7 +75,7 @@
     <cac:AdditionalDocumentReference>
         <cbc:ID>QR</cbc:ID>
         <cac:Attachment>
-            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain" id="qr_code_placeholder">AR1EdW1teSBEZXZlbG9wZXIgRW50ZXJwcmlzZSBTQQIPMzk5OTk5OTk5OTAwMDAzAxQyMDI2LTA2LTE4VDIyOjQyOjAwWgQGNTc1LjAwBQU3NS4wMAYsdlRvSVduZWJ6Y2pJclcxRlBTaGxPMlE3YmxaaG9wYk5nbC9PejdER1FiND0HWGE1SW14alNIMUpTSEEyaisvVnpERlQyUFBxQ3ZNeXRlWDBIWVQ4T29YcnQyL3NQc0w3WU1Wektsb1pHbm1HMU1ORDlYTi9yN1NKNVNob25rc2FXaGNBPT0IWDBWMBAGByqGSM49AgEGBSuBBAAKA0IABE6hk6FEqQYVB6YVfHwllNKBphlGbJVOIec+ALnsUSUEmUSfymy6A2bOzprfbh/hMat8XWhvzRWRq8WXHV9CC6gJSDBGAiEA5QuEcXiBp/F2E1e0RfDilWg9v/JXlzAiBrGG6bNQwfYCIQDsrTsULHRB916XJdU+rf4MsHfx42ZLEF4MD2mqOVhaNg==</cbc:EmbeddedDocumentBinaryObject>
+            <cbc:EmbeddedDocumentBinaryObject mimeCode="text/plain" id="qr_code_placeholder">AR1EdW1teSBEZXZlbG9wZXIgRW50ZXJwcmlzZSBTQQIPMzk5OTk5OTk5OTAwMDAzAxQyMDI2LTA2LTE4VDIyOjQyOjAwWgQGNTc1LjAwBQU3NS4wMAYsZ1pnRzZvQ0xEdE10SDc5R2J2MWlqYzhneG5aTUt0SG82TkI5Y2VjNUE0WT0HWE5CY0tzb3ZhQnM0Z3oydXZlbVd1SnJoemN2d2FBN1FiaTViZWRJcC95Sk1xa1lSZEJ0VklXaitLMmJqdXFtQnIyRWxCVDE5WlkveGtyejFKT2JqWWNnPT0IWDBWMBAGByqGSM49AgEGBSuBBAAKA0IABFrwjHm9ruMcT3VyIIoz4eioLhQtzk2mWyuOJuK957KG2Je/PGeJRylVkRQ8P8RCWRE/BTqeDl7iv4TRcg3wYj8JRzBFAiEA6GgLe8Rii8GyI4s+ZU28fGqg37Y/yoyM9ZwV/nhecsUCIHQHI0xRqmblrWn9Ea6SbBUrkdYYPbJlLRmVprI9N5Fu</cbc:EmbeddedDocumentBinaryObject>
         </cac:Attachment>
     </cac:AdditionalDocumentReference>
     <cac:Signature>
@@ -106,6 +106,9 @@
                     <cbc:ID>VAT</cbc:ID>
                 </cac:TaxScheme>
             </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>Dummy Developer Enterprise SA</cbc:RegistrationName>
+            </cac:PartyLegalEntity>
         </cac:Party>
     </cac:AccountingSupplierParty>
     <cac:AccountingCustomerParty>
@@ -113,14 +116,30 @@
             <cac:PartyName>
                 <cbc:Name>Saudi Tech Buyer LLC</cbc:Name>
             </cac:PartyName>
+            <cac:PostalAddress>
+                <cbc:StreetName>شارع الملك فهد</cbc:StreetName>
+                <cbc:BuildingNumber>5678</cbc:BuildingNumber>
+                <cbc:CitySubdivisionName>حي الصحافة</cbc:CitySubdivisionName>
+                <cbc:CityName>الرياض</cbc:CityName>
+                <cbc:PostalZone>12311</cbc:PostalZone>
+                <cac:Country>
+                    <cbc:IdentificationCode>SA</cbc:IdentificationCode>
+                </cac:Country>
+            </cac:PostalAddress>
             <cac:PartyTaxScheme>
                 <cbc:CompanyID>300000000000003</cbc:CompanyID>
                 <cac:TaxScheme>
                     <cbc:ID>VAT</cbc:ID>
                 </cac:TaxScheme>
             </cac:PartyTaxScheme>
+            <cac:PartyLegalEntity>
+                <cbc:RegistrationName>Saudi Tech Buyer LLC</cbc:RegistrationName>
+            </cac:PartyLegalEntity>
         </cac:Party>
     </cac:AccountingCustomerParty>
+    <cac:Delivery>
+        <cbc:ActualDeliveryDate>2026-06-18</cbc:ActualDeliveryDate>
+    </cac:Delivery>
     <cac:TaxTotal>
         <cbc:TaxAmount currencyID="SAR">75.00</cbc:TaxAmount>
         <cac:TaxSubtotal>
@@ -135,6 +154,9 @@
             </cac:TaxCategory>
         </cac:TaxSubtotal>
     </cac:TaxTotal>
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="SAR">75.00</cbc:TaxAmount>
+    </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
         <cbc:LineExtensionAmount currencyID="SAR">500.00</cbc:LineExtensionAmount>
         <cbc:TaxExclusiveAmount currencyID="SAR">500.00</cbc:TaxExclusiveAmount>
@@ -146,6 +168,10 @@
         <cbc:ID>1</cbc:ID>
         <cbc:InvoicedQuantity unitCode="PCE">1.000000</cbc:InvoicedQuantity>
         <cbc:LineExtensionAmount currencyID="SAR">500.00</cbc:LineExtensionAmount>
+        <cac:TaxTotal>
+            <cbc:TaxAmount currencyID="SAR">75.00</cbc:TaxAmount>
+            <cbc:RoundingAmount currencyID="SAR">575.00</cbc:RoundingAmount>
+        </cac:TaxTotal>
         <cac:Item>
             <cbc:Name>Sandbox Cloud Integration Service</cbc:Name>
             <cac:ClassifiedTaxCategory>

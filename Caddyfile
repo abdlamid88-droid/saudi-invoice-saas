@@ -1,9 +1,9 @@
 zatca-invoice.duckdns.org {
 	handle /api/* {
-		reverse_proxy localhost:8000
+		reverse_proxy api:8000
 	}
 
 	handle /* {
-		reverse_proxy localhost:8501
+		reverse_proxy web:8501
 	}
 }

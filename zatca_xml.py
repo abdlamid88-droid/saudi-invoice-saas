@@ -3,7 +3,7 @@ from xml.dom import minidom
 
 def generate_ubl_xml(invoice_data: dict) -> str:
     """
-    Generates a UBL 2.1 compliant Simplified Tax Invoice (388) XML structure.
+    Generates a UBL 2.1 compliant Standard (B2B) or Simplified (B2C) Tax Invoice XML structure.
     
     Args:
         invoice_data (dict): Dictionary containing details for supplier, customer, items, etc.
@@ -47,6 +47,10 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     })
     ref_sig_id.text = 'urn:oasis:names:specification:ubl:signature:Invoice'
 
+    # Determine standard (B2B) vs simplified (B2C) based on customer VAT number
+    customer = invoice_data.get('customer', {})
+    is_b2b = bool(customer.get('vat_number'))
+
     # 4. Basic Invoice Metadata
     ET.SubElement(root, 'cbc:ProfileID').text = 'reporting:1.0'
     ET.SubElement(root, 'cbc:ID').text = invoice_data.get('invoice_id', 'INV-0001')
@@ -54,10 +58,12 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     ET.SubElement(root, 'cbc:IssueDate').text = invoice_data.get('issue_date', '')
     ET.SubElement(root, 'cbc:IssueTime').text = invoice_data.get('issue_time', '')
     
+    type_code_name = '0100000' if is_b2b else '0200000'
     type_code = ET.SubElement(root, 'cbc:InvoiceTypeCode', {
-        'name': invoice_data.get('invoice_type_name', '0211000')
+        'name': invoice_data.get('invoice_type_name', type_code_name)
     })
-    type_code.text = invoice_data.get('invoice_type_code', '388')
+    invoice_type_code = invoice_data.get('invoice_type_code', '388')
+    type_code.text = invoice_type_code
     
     ET.SubElement(root, 'cbc:DocumentCurrencyCode').text = 'SAR'
     ET.SubElement(root, 'cbc:TaxCurrencyCode').text = 'SAR'
@@ -85,6 +91,17 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     })
     obj_qr.text = 'WILL_BE_REPLACED_WITH_BASE64_QR_CODE'
 
+    # Billing Reference (Credit/Debit notes)
+    if invoice_type_code in ['381', '383']:
+        billing_ref = ET.SubElement(root, 'cac:BillingReference')
+        inv_doc_ref = ET.SubElement(billing_ref, 'cac:InvoiceDocumentReference')
+        
+        linked_invoice_id = invoice_data.get('linked_invoice_id', 'N/A')
+        instruction_note = invoice_data.get('instruction_note', 'No reason provided')
+        
+        ET.SubElement(inv_doc_ref, 'cbc:ID').text = str(linked_invoice_id)
+        ET.SubElement(inv_doc_ref, 'cbc:InstructionNote').text = str(instruction_note)
+
     # Signature Metadata
     signature = ET.SubElement(root, 'cac:Signature')
     ET.SubElement(signature, 'cbc:ID').text = 'urn:oasis:names:specification:ubl:signature:Invoice'
@@ -105,11 +122,11 @@ def generate_ubl_xml(invoice_data: dict) -> str:
 
     # Postal Address
     address = ET.SubElement(party, 'cac:PostalAddress')
-    ET.SubElement(address, 'cbc:StreetName').text = supplier.get('street_name', '')
-    ET.SubElement(address, 'cbc:BuildingNumber').text = supplier.get('building_number', '')
-    ET.SubElement(address, 'cbc:CitySubdivisionName').text = supplier.get('city_subdivision', '')
-    ET.SubElement(address, 'cbc:CityName').text = supplier.get('city_name', '')
-    ET.SubElement(address, 'cbc:PostalZone').text = supplier.get('postal_zone', '')
+    ET.SubElement(address, 'cbc:StreetName').text = supplier.get('street_name', 'King Fahd Road')
+    ET.SubElement(address, 'cbc:BuildingNumber').text = supplier.get('building_number', '1234')
+    ET.SubElement(address, 'cbc:CitySubdivisionName').text = supplier.get('city_subdivision', 'Al Olaya')
+    ET.SubElement(address, 'cbc:CityName').text = supplier.get('city_name', 'Riyadh')
+    ET.SubElement(address, 'cbc:PostalZone').text = supplier.get('postal_zone', '12211')
     country = ET.SubElement(address, 'cac:Country')
     ET.SubElement(country, 'cbc:IdentificationCode').text = supplier.get('country', 'SA')
 
@@ -119,20 +136,49 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     scheme = ET.SubElement(tax_scheme, 'cac:TaxScheme')
     ET.SubElement(scheme, 'cbc:ID').text = 'VAT'
 
+    # Party Legal Entity (mandatory for BT-27)
+    legal_entity = ET.SubElement(party, 'cac:PartyLegalEntity')
+    ET.SubElement(legal_entity, 'cbc:RegistrationName').text = supplier.get('name', '')
+
     # 7. Customer details (AccountingCustomerParty)
     cust_party = ET.SubElement(root, 'cac:AccountingCustomerParty')
     c_party = ET.SubElement(cust_party, 'cac:Party')
     
-    customer = invoice_data.get('customer', {})
-    if customer.get('name'):
+    if is_b2b:
         c_name = ET.SubElement(c_party, 'cac:PartyName')
-        ET.SubElement(c_name, 'cbc:Name').text = customer['name']
+        ET.SubElement(c_name, 'cbc:Name').text = customer.get('name', '')
         
-    c_tax_scheme = ET.SubElement(c_party, 'cac:PartyTaxScheme')
-    if customer.get('vat_number'):
-        ET.SubElement(c_tax_scheme, 'cbc:CompanyID').text = customer['vat_number']
-    c_scheme = ET.SubElement(c_tax_scheme, 'cac:TaxScheme')
-    ET.SubElement(c_scheme, 'cbc:ID').text = 'VAT'
+        c_address = ET.SubElement(c_party, 'cac:PostalAddress')
+        ET.SubElement(c_address, 'cbc:StreetName').text = customer.get('street_name', 'شارع الملك فهد')
+        ET.SubElement(c_address, 'cbc:BuildingNumber').text = customer.get('building_number', '5678')
+        ET.SubElement(c_address, 'cbc:CitySubdivisionName').text = customer.get('city_subdivision', 'حي الصحافة')
+        ET.SubElement(c_address, 'cbc:CityName').text = customer.get('city_name', 'الرياض')
+        ET.SubElement(c_address, 'cbc:PostalZone').text = customer.get('postal_zone', '12311')
+        c_country = ET.SubElement(c_address, 'cac:Country')
+        ET.SubElement(c_country, 'cbc:IdentificationCode').text = customer.get('country', 'SA')
+
+        c_tax_scheme = ET.SubElement(c_party, 'cac:PartyTaxScheme')
+        ET.SubElement(c_tax_scheme, 'cbc:CompanyID').text = customer.get('vat_number', '')
+        c_scheme = ET.SubElement(c_tax_scheme, 'cac:TaxScheme')
+        ET.SubElement(c_scheme, 'cbc:ID').text = 'VAT'
+
+        c_legal_entity = ET.SubElement(c_party, 'cac:PartyLegalEntity')
+        ET.SubElement(c_legal_entity, 'cbc:RegistrationName').text = customer.get('name', '')
+    else:
+        if customer.get('name'):
+            c_name = ET.SubElement(c_party, 'cac:PartyName')
+            ET.SubElement(c_name, 'cbc:Name').text = customer['name']
+            
+        c_tax_scheme = ET.SubElement(c_party, 'cac:PartyTaxScheme')
+        if customer.get('vat_number'):
+            ET.SubElement(c_tax_scheme, 'cbc:CompanyID').text = customer['vat_number']
+        c_scheme = ET.SubElement(c_tax_scheme, 'cac:TaxScheme')
+        ET.SubElement(c_scheme, 'cbc:ID').text = 'VAT'
+
+    # Delivery (mandatory for B2B)
+    if is_b2b:
+        delivery = ET.SubElement(root, 'cac:Delivery')
+        ET.SubElement(delivery, 'cbc:ActualDeliveryDate').text = invoice_data.get('issue_date', '')
 
     # 8. Financial totals
     items = invoice_data.get('items', [])
@@ -141,11 +187,10 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     tax_total = sum((item['price'] * item['quantity']) * (item.get('vat_percent', tax_percent) / 100.0) for item in items)
     tax_inclusive_total = line_extension_total + tax_total
 
-    # TaxTotal node
+    # First TaxTotal (with breakdown subtotals)
     tax_tot = ET.SubElement(root, 'cac:TaxTotal')
     ET.SubElement(tax_tot, 'cbc:TaxAmount', {'currencyID': 'SAR'}).text = f'{tax_total:.2f}'
     
-    # Subtotal
     subtotal = ET.SubElement(tax_tot, 'cac:TaxSubtotal')
     ET.SubElement(subtotal, 'cbc:TaxableAmount', {'currencyID': 'SAR'}).text = f'{line_extension_total:.2f}'
     ET.SubElement(subtotal, 'cbc:TaxAmount', {'currencyID': 'SAR'}).text = f'{tax_total:.2f}'
@@ -154,6 +199,10 @@ def generate_ubl_xml(invoice_data: dict) -> str:
     ET.SubElement(category, 'cbc:Percent').text = f'{tax_percent:.2f}'
     scheme_vat = ET.SubElement(category, 'cac:TaxScheme')
     ET.SubElement(scheme_vat, 'cbc:ID').text = 'VAT'
+
+    # Second TaxTotal (without breakdown subtotals, required when TaxCurrencyCode is present)
+    tax_tot_currency = ET.SubElement(root, 'cac:TaxTotal')
+    ET.SubElement(tax_tot_currency, 'cbc:TaxAmount', {'currencyID': 'SAR'}).text = f'{tax_total:.2f}'
 
     # Monetary total
     monetary = ET.SubElement(root, 'cac:LegalMonetaryTotal')
@@ -172,6 +221,14 @@ def generate_ubl_xml(invoice_data: dict) -> str:
         line_ext_amount = item['price'] * item['quantity']
         ET.SubElement(line, 'cbc:LineExtensionAmount', {'currencyID': 'SAR'}).text = f'{line_ext_amount:.2f}'
         
+        # If B2B, inject TaxTotal inside InvoiceLine before cac:Item
+        if is_b2b:
+            item_tax = line_ext_amount * (item.get('vat_percent', tax_percent) / 100.0)
+            item_inclusive = line_ext_amount + item_tax
+            line_tax_total = ET.SubElement(line, 'cac:TaxTotal')
+            ET.SubElement(line_tax_total, 'cbc:TaxAmount', {'currencyID': 'SAR'}).text = f"{item_tax:.2f}"
+            ET.SubElement(line_tax_total, 'cbc:RoundingAmount', {'currencyID': 'SAR'}).text = f"{item_inclusive:.2f}"
+
         # Item category
         item_node = ET.SubElement(line, 'cac:Item')
         ET.SubElement(item_node, 'cbc:Name').text = item['name']
