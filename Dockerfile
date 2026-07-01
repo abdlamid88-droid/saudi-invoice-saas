@@ -14,6 +14,10 @@ WORKDIR /app
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir \
     streamlit \
+    fastapi \
+    uvicorn \
+    pydantic \
+    sqlalchemy \
     mcp \
     psycopg2-binary \
     fpdf2 \
